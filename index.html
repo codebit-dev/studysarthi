@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Popup Example</title>
+    <style>
+        /* Style for the popup modal */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            padding-top: 60px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5); 
+        }
+
+        /* Modal content (PDF container) */
+        .modal-content {
+            position: relative;
+            margin: auto;
+            padding: 0;
+            width: 80%;
+            height: 80%;
+            background-color: #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Close button */
+        .close {
+            color: white;
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: red;
+            cursor: pointer;
+        }
+
+        /* PDF iframe */
+        iframe {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Button style */
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>PDF Popup Example</h2>
+    <!-- Button to open the modal -->
+    <button id="openModalBtn">Open PDF</button>
+
+    <!-- The Modal -->
+    <div id="pdfModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close" id="closeModalBtn">&times;</span>
+            <iframe id="pdfFrame" src=""></iframe>
+        </div>
+
+    </div>
+
+    <script>
+        // Get modal elements
+        const modal = document.getElementById("pdfModal");
+        const openBtn = document.getElementById("openModalBtn");
+        const closeBtn = document.getElementById("closeModalBtn");
+        const pdfFrame = document.getElementById("pdfFrame");
+
+        // When the user clicks the button, open the modal and load the PDF
+        openBtn.onclick = function() {
+            modal.style.display = "block";
+            pdfFrame.src = "chm_viva.pdf";  // Replace with your actual PDF file path
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+            pdfFrame.src = "";  // Clear the iframe src to stop the PDF
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+                pdfFrame.src = "";  // Clear the iframe src to stop the PDF
+            }
+        }
+    </script>
+
+</body>
+</html>
