@@ -1,108 +1,183 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
+    <title>StudySarthi</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Popup Example</title>
-    <style>
-        /* Style for the popup modal */
-        .modal {
-            display: none; 
-            position: fixed; 
-            z-index: 1; 
-            padding-top: 60px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5); 
+    <meta name="viewport" content="width=device-width">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  <!-- Code injected by Five-server -->
+  <script async="" data-id="five-server" data-file="c:\Users\DEVDE\Downloads\prototype\landing\index.html" type="application/javascript" src="/fiveserver.js"></script>
+  <style>      
+      
+      @keyframes fadeOutHighlight {
+        from {background-color: rgba(155,215,255,0.5);}
+        to {background-color: rgba(155,215,255,0);}
+      }      
+      @keyframes fadeOutHighlightIMG {
+        0% {filter: sepia(100%) hue-rotate(180deg) saturate(200%);}
+        33% {filter: sepia(66%) hue-rotate(180deg) saturate(100%);}
+        50% {filter: sepia(50%) hue-rotate(90deg) saturate(50%);}
+        66% {filter: sepia(33%) hue-rotate(0deg) saturate(100%);}
+        100% {filter: sepia(0%) hue-rotate(0deg) saturate(100%);}
+      }
+      @keyframes fiveserverInfoPopup {
+        0%   {top:-40px;}
+        15%  {top:4px;}
+        85%  {top:4px;}
+        100% {top:-40px;}
+      }
+      /*smaller*/
+      @media (max-width: 640px) {
+        #fiveserver-info-wrapper {
+          max-width: 98%;
         }
+        #fiveserver-info {
+          border-radius: 0px;
+        }      
+      }
 
-        /* Modal content (PDF container) */
-        .modal-content {
-            position: relative;
-            margin: auto;
-            padding: 0;
-            width: 80%;
-            height: 80%;
-            background-color: #fff;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      </style><!-- Code injected by Five-server -->
+  <script async="" data-id="five-server" data-file="c:\Users\DEVDE\Downloads\prototype\landing\index.html" type="application/javascript" src="/fiveserver.js"></script>
+  <style>      
+      /* Injected by five-server */
+      /*[data-highlight="true"] {
+        border: 1px rgb(90,170,255) solid !important;
+        background-color: rgba(155,215,255,0.5);
+        animation: fadeOutHighlight 1s forwards 0.5s;
+      }
+      img[data-highlight="true"] {
+        filter: sepia(100%) hue-rotate(180deg) saturate(200%);
+        animation: fadeOutHighlightIMG 0.5s forwards 0.5s;
+      }*/
+      @keyframes fadeOutHighlight {
+        from {background-color: rgba(155,215,255,0.5);}
+        to {background-color: rgba(155,215,255,0);}
+      }      
+      @keyframes fadeOutHighlightIMG {
+        0% {filter: sepia(100%) hue-rotate(180deg) saturate(200%);}
+        33% {filter: sepia(66%) hue-rotate(180deg) saturate(100%);}
+        50% {filter: sepia(50%) hue-rotate(90deg) saturate(50%);}
+        66% {filter: sepia(33%) hue-rotate(0deg) saturate(100%);}
+        100% {filter: sepia(0%) hue-rotate(0deg) saturate(100%);}
+      }
+      @keyframes fiveserverInfoPopup {
+        0%   {top:-40px;}
+        15%  {top:4px;}
+        85%  {top:4px;}
+        100% {top:-40px;}
+      }
+      /*smaller*/
+      @media (max-width: 640px) {
+        #fiveserver-info-wrapper {
+          max-width: 98%;
         }
+        #fiveserver-info {
+          border-radius: 0px;
+        }      
+      }
 
-        /* Close button */
-        .close {
-            color: white;
-            position: absolute;
-            top: 10px;
-            right: 25px;
-            font-size: 30px;
-            font-weight: bold;
+      </style><style>      
+      /* Injected by five-server */
+      /*[data-highlight="true"] {
+        border: 1px rgb(90,170,255) solid !important;
+        background-color: rgba(155,215,255,0.5);
+        animation: fadeOutHighlight 1s forwards 0.5s;
+      }
+      img[data-highlight="true"] {
+        filter: sepia(100%) hue-rotate(180deg) saturate(200%);
+        animation: fadeOutHighlightIMG 0.5s forwards 0.5s;
+      }*/
+      @keyframes fadeOutHighlight {
+        from {background-color: rgba(155,215,255,0.5);}
+        to {background-color: rgba(155,215,255,0);}
+      }      
+      @keyframes fadeOutHighlightIMG {
+        0% {filter: sepia(100%) hue-rotate(180deg) saturate(200%);}
+        33% {filter: sepia(66%) hue-rotate(180deg) saturate(100%);}
+        50% {filter: sepia(50%) hue-rotate(90deg) saturate(50%);}
+        66% {filter: sepia(33%) hue-rotate(0deg) saturate(100%);}
+        100% {filter: sepia(0%) hue-rotate(0deg) saturate(100%);}
+      }
+      @keyframes fiveserverInfoPopup {
+        0%   {top:-40px;}
+        15%  {top:4px;}
+        85%  {top:4px;}
+        100% {top:-40px;}
+      }
+      /*smaller*/
+      @media (max-width: 640px) {
+        #fiveserver-info-wrapper {
+          max-width: 98%;
         }
+        #fiveserver-info {
+          border-radius: 0px;
+        }      
+      }
 
-        .close:hover,
-        .close:focus {
-            color: red;
-            cursor: pointer;
-        }
-
-        /* PDF iframe */
-        iframe {
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Button style */
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-
-    <h2>PDF Popup Example</h2>
-    <!-- Button to open the modal -->
-    <button id="openModalBtn">Open PDF</button>
-
-    <!-- The Modal -->
-    <div id="pdfModal" class="modal">
-
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close" id="closeModalBtn">&times;</span>
-            <iframe id="pdfFrame" src=""></iframe>
+      </style></head>
+  <body>
+    <div class="landingpage">
+      <div class="navbar">
+        <a class="navlogo">STUDY SARTHI</a>
+        <button class="hamburger">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+              <path d="M3 12h18M3 6h18M3 18h18"></path>
+            </svg>
+          </button>
+        
+        <div class="buttonwrap">
+          
+          <button class="createbtn" onclick="window.location.href='https://www.example.com/';">SIGN IN / SIGN UP</button>
         </div>
-
+      </div>
+      <div class="box">
+        <div class="infobox">
+            <div id="titl"> Your gateway to smarter learning</div>
+            <br>
+            <div id="head"></div>
+          <br>
+          <div class="infobox-btnwrapper">
+            
+                <button onclick="window.location.href='https://www.example.com/';" class="infobox-explorebtn selected">Explore</button>
+            
+            
+            
+          </div>
+        </div>
+        <div class="display">
+          <img class="display-nft" src="./img.jpg" alt="unsplash-OG44d93i-NJk" border="0">
+          <div class="infowrapper">
+            
+            
+          </div>
+        </div>
+      </div>
+      
+      <br><br><br><br>
+      <br><br> <br><br>     
+      
+      <div class="footer2">
+        <div></div>
+        <p>Copyright 2024 StudySarthi</p>
+      </div>
     </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+  const text = "ॐ असतो मा सद्गमय। तमसो मा ज्योतिर्गमय। मृत्योर्मा अमृतं गमय। ॐ शांतिः शांतिः शांतिः ॥";
+  let index = 0;
+  const speed = 50;  // Typing speed in milliseconds
+  const element = document.getElementById("head");
 
-    <script>
-        // Get modal elements
-        const modal = document.getElementById("pdfModal");
-        const openBtn = document.getElementById("openModalBtn");
-        const closeBtn = document.getElementById("closeModalBtn");
-        const pdfFrame = document.getElementById("pdfFrame");
+  function typeWriter() {
+    if (index < text.length) {
+      element.innerHTML += text.charAt(index);
+      index++;
+      setTimeout(typeWriter, speed);
+    }
+  }
 
-        // When the user clicks the button, open the modal and load the PDF
-        openBtn.onclick = function() {
-            modal.style.display = "block";
-            pdfFrame.src = "chm_viva.pdf";  // Replace with your actual PDF file path
-        }
+  typeWriter();  // Start typing effect
+});
 
-        // When the user clicks on <span> (x), close the modal
-        closeBtn.onclick = function() {
-            modal.style.display = "none";
-            pdfFrame.src = "";  // Clear the iframe src to stop the PDF
-        }
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-            if (event.target === modal) {
-                modal.style.display = "none";
-                pdfFrame.src = "";  // Clear the iframe src to stop the PDF
-            }
-        }
-    </script>
-
-</body>
-</html>
+</script>
+  
+</body></html>
